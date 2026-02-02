@@ -277,70 +277,84 @@ STICH provides complete package lifecycle management:
 - **Package Tools**: dpkg-deb for DEB creation
 - **Utilities**: Standard Python libraries
 
-### Required Packages
-
-Debian/Ubuntu/Kali:
-sudo apt install python3-pyqt6 dpkg-dev
-pip install PyQt6
-
 ---
 
 ## Installation
 
-### Quick Install
+### Quick Install (Debian/Ubuntu)
+```bash
+# Download the DEB package
+wget https://github.com/funbinet/stich/releases/download/v1.0.0/stich_1.0.0_all.deb
 
-Clone repository:
-git clone https://github.com/funbinet/stich.git
-cd stich
+# Install dependencies and package
+sudo apt install python3-pyqt6
+sudo dpkg -i stich_1.0.0_all.deb
 
-Install dependencies:
-pip install PyQt6
-sudo apt install dpkg-dev
+# Run STICH
+stich
+```
 
-Run STICH:
-python3 stich.py
-
-### First Run
-1. **Select Mode**: Click ENCODE or DECODE indicator
-2. **Add Files**: Click ADD FILES to select Python files
-3. **Process**: Click the action button to encode/decode
-4. **Package (Optional)**: Click DEB to create Debian package
+### Alternative: Manual Download
+1. Go to [STICH Releases](https://github.com/funbinet/stich/releases/tag/v1.0.0)
+2. Download `stich_1.0.0_all.deb`
+3. Install with: `sudo dpkg -i stich_1.0.0_all.deb`
+4. Fix any missing dependencies: `sudo apt --fix-broken install`
 
 ---
 
 ## Usage
 
-### Basic Operation
-1. **Start STICH**: python3 stich.py
-2. **Select Mode**: Click ENCODE (green) or DECODE
-3. **Add Files**: Use ADD FILES or TOOL button
-4. **Process**: Click action button
-5. **View Output**: Files saved with -enc.py or -dec.py suffix
+### Launching STICH
+```bash
+# From terminal
+stich
+```
 
-### Creating DEB Packages
-1. **Click DEB**: Open package builder dialog
-2. **Select Source**: Choose folder or Python file
-3. **Enter Info**: Package name, version, maintainer
-4. **Add Icon**: Select PNG/SVG icon (required)
-5. **Configure**: Set dependencies, exclude patterns
-6. **Create**: Click CREATE to build .deb
-7. **Install**: Click INSTALL to install package
+### Encoding Individual Files
 
-### Deleting Packages
-1. **Click DELETE**: Open package removal dialog
-2. **Search**: Type package name to filter list
-3. **Select**: Click package in list
-4. **Remove**: Click DELETE to uninstall
+1. Launch STICH
+2. Click **ENCODE** indicator to select encode mode (green indicator active)
+3. Click **ADD FILES** to select one or more Python files
+4. Click the **ENCODE** button
+5. Encoded files saved as `filename-enc.py` in the same directory
 
-### File Naming Convention
+### Decoding Files
+
+1. Click **DECODE** indicator to switch mode
+2. Select encoded files using **ADD FILES**
+3. Click the **DECODE** button
+4. Decoded files saved as `filename-dec.py`
+
+### Encoding Entire Tools
+
+1. Click the **TOOL** button (folder icon)
+2. Select the root folder of your Python tool
+3. Choose **ENCODE** or **DECODE** mode
+4. Click the action button
+5. Creates a new folder `toolname-enc/` with all Python files processed
+
+### Interface Controls
+
+| Button | Function |
+|--------|----------|
+| **ENCODE** | Mode indicator (click to select) |
+| **DECODE** | Mode indicator (click to select) |
+| **ADD FILES** | Multi-file selection |
+| **TOOL** | Select tool folder |
+| **CLEAR** | Remove all selected files |
+| **Action Button** | Execute encode/decode |
+| **? (Help)** | Documentation dialog |
+| **✕ (Close)** | Exit application |
+
+### File Naming
 
 | Operation | Input | Output |
 |-----------|-------|--------|
-| Encode File | script.py | script-enc.py |
-| Decode File | script-enc.py | script-dec.py |
-| Encode Tool | mytool/ | mytool-enc/ |
-| Decode Tool | mytool-enc/ | mytool-dec/ |
-| Duplicate | script-enc.py exists | script-enc(1).py |
+| Encode File | `script.py` | `script-enc.py` |
+| Decode File | `script-enc.py` | `script-dec.py` |
+| Encode Tool | `mytool/` | `mytool-enc/` |
+| Decode Tool | `mytool-enc/` | `mytool-dec/` |
+| Duplicate | `script-enc.py` exists | `script-enc(1).py` |
 
 ---
 
