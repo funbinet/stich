@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="stich.png" alt="STICH" width="300"/>
+  <img src="stich.png" alt="STICH" width="200"/>
 </p>
 
 <h1 align="center">STICH</h1>
